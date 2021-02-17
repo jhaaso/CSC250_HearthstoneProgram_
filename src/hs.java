@@ -5,7 +5,6 @@ public class hs
 	private int defense;
 	private String name;
 	
-	
 	public hs(String name, int cost, int attack, int defense)
 	{
 		this.cost = cost;
@@ -15,8 +14,17 @@ public class hs
 	}
 	
 	
+	public void setName(String name)
+	{
+		if(name.length() >= 5)
+		{
+			this.name = name;
+		}
+	}
+	
 	void display()
-	{	
+	{
+		
 		System.out.format("Name: %s \nCost: %d \nAttack: %d Defense: %d\n", this.name, this.cost, this.attack,this.defense);
 	}
 }
