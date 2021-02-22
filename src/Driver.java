@@ -1,60 +1,47 @@
 import java.net.URL;
+import org.json.simple.JSONValue;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import java.util.Scanner;
 
-
-public class Driver
+public class Driver 
 {
 
-	public static void main(String[] args) 
-	{
-		hs c1 = new hs("Charmander", 1, 2, 3);
-		hs c2 = new hs("Squirtle", 1, 3, 2);
-		hs c3 = new hs("Bulbasaur", 1, 4, 1);
-		hs c4 = new hs("Pikachu", 5, 10, 8);
+	public static void main(String[] args)
+	{ 
+		URLReader hearthstoneURLReader = new URLReader("https://api.hearthstonejson.com/v1/25770/enUS/cards.json");
+		//System.out.println(hearthstoneURLReader.getTheURLContents());
+		Object obj = JSONValue.parse(hearthstoneURLReader.getTheURLContents());
+		HearthstoneCard[] theMinions = new HearthstoneCard[1924];
 		
-		System.out.println("hello World");
-		
-
-		c1.display();
-		c2.display();
-		c3.display();
-		c4.display();
-		
-		c1.setName("woot");
-		c1.display();
-		
-		
-		//https://pokemondb.net/pokedex/all
-		//something
-		
-		String cardJson = Driver.getJSON("https://pokemondb.net/pokedex/all");
-		System.out.println(cardJson);
-
-		
-	}
-	static String getJSON(String urlString)
-	{	    
-		String line = "";
-		try
-		{
-			URL url = new URL(urlString);
-		    Scanner input = new Scanner(url.openStream());
-		   
-		    while (input.hasNext())
+	    //System.out.println(obj instanceof JSONArray);
+	    if(obj instanceof JSONArray)
+	    {
+	    	//I am only in here if obj IS a JSONArray
+	    	JSONArray array = (JSONArray)obj;
+	    	int count = 0;
+	    	
+		    for(int i = 0; i < array.size(); i++)
 		    {
-		    	line += input.nextLine();
+		    	JSONObject cardData = (JSONObject)array.get(i);
+		    	if(cardData.containsKey("cost") && cardData.containsKey("name"))
+		    	{
+		    		if(cardData.containsKey("type") && cardData.get("type").equals("MINION"))
+		    		{
+		    			System.out.println(cardData.get("name"));
+		    			System.out.println("- ");
+			    		System.out.println(cardData.get("cost"));
+			    		System.out.println("- ");
+			    		System.out.println(cardData.get("attack"));
+			    		System.out.println("- ");
+			    		System.out.println(cardData.get("health"));
+			    		count++;
+		    		}
+		    		
+		    	}
+		    	
 		    }
-
-		   
-		    input.close();
-		    
-		
-		}
-	    catch(Exception e)
-		{
-	    	e.printStackTrace();
-	    	line = "Can't Connect";
-		}
-		return line;
+		    System.out.println(count);
+	    }
 	}
 }
