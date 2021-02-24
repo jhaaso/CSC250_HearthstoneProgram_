@@ -56,14 +56,14 @@ public class CardParser
 	
 	public void sortLowestCostToHighestCost()
 	{
-		this.theMinions.get(3).getCost();
+		this.theMinions.get(1).getCost();
 		
-		int[] ints = {"https://api.hearthstonejson.com/v1/25770/enUS/cards.json"};
+		int[] ints = ("https://api.hearthstonejson.com/v1/25770/enUS/cards.json");
 		Arrays.sort(ints);
 		System.out.println(Arrays.asList(ints));
 	
 
-		this.theMinions.get(3).getCost();
+		this.theMinions.get(1399).getCost();
 		//Note: this.theMinions.remove(3) will remove the card that used to be at bucket 3
 	
 		
