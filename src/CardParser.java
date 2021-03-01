@@ -83,6 +83,36 @@ public class CardParser
 			return currWinner;
 			
 		}
+	
+	//public static main void (String[] args)
+	{
+	//	int[] ar = {1, 3, 5, 7, 9};
+	//	System.out.println(Arrays.toString(ar));
+	//	selectionSort(ar);
+	//	System.out.println(Arrays.toString(ar));
+	}
+	//public static selectionSort(int[] ar)
+	{
+		//int currStart = 0;
+		//int swapPos, temp;
+		//while(currStart < ar.length)
+		//	swapPos = currStart;
+		//	for(int i = currStart + 1;i < ar.length; i++)
+		//	{
+		//		if(ar[i] < ar[swapPos])
+		//		{
+		//			swapPos = i;
+		//		}
+		//	}
+		//	temp = ar[currStart];
+		//	ar[currStart] = ar[swapPos];
+		//	ar[swapPos] = temp;
+		//	currStart++;
+	}
+
+
+
+
 }
 		
 	

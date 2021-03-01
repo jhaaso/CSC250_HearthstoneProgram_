@@ -7,5 +7,6 @@ public class Driver
 		//cp.showMinions();
 		cp.sortLowestCostToHighestCost();
 		cp.showMinions();
+		System.out.println("hello world!");
 	}
 }
