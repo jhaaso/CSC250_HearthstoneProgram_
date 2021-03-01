@@ -56,17 +56,35 @@ public class CardParser
 	
 	public void sortLowestCostToHighestCost()
 	{
-		this.theMinions.get(1).getCost();
+		ArrayList<HearthstoneCard> theSortedList = new ArrayList <HearthstoneCard>();
+		HearthstoneCard nextSmallest;
+		while(this.theMinions.size() > 0)
+		{
+			nextSmallest = this.findSmallest();
+			theSortedList.add(nextSmallest);
+		}
+		this.theMinions = theSortedList;
+	}
+	
+	private HearthstoneCard findSmallest()
+		{
+			HearthstoneCard currWinner = this.theMinions.get(0);
+			int indexOfWinner = 0;
+			for(int i = 1; i < this.theMinions.size(); i++)
+			{ 
+				if (this.theMinions.get(i).getCost() > currWinner.getCost())
+				{
+					currWinner = this.theMinions.get(i);
+					indexOfWinner = i;
+				}
+	
+			}
+			this.theMinions.remove(indexOfWinner);
+			return currWinner;
+			
+		}
+}
 		
-		int[] ints = ("https://api.hearthstonejson.com/v1/25770/enUS/cards.json");
-		Arrays.sort(ints);
-		System.out.println(Arrays.asList(ints));
 	
 
-		this.theMinions.get(1399).getCost();
-		//Note: this.theMinions.remove(3) will remove the card that used to be at bucket 3
-	
-		
-	}
-}
 
