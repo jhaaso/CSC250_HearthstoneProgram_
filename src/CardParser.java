@@ -30,7 +30,7 @@ public class CardParser
 		    		if(cardData.containsKey("type") && cardData.get("type").equals("MINION"))
 		    		{
 		    			//I am only here is this is a minion card!!!
-		    			System.out.println(cardData.keySet().toString());
+		    			//System.out.println(cardData.keySet().toString());
 		    			String name = (String)cardData.get("name");
 		    			int cost = Integer.parseInt(cardData.get("cost").toString());
 		    			int attack = Integer.parseInt(cardData.get("attack").toString());
@@ -147,43 +147,37 @@ public class CardParser
 			}
 		}
 			
-		class BinarySearch { 
+		public HearthstoneCard binarySearchOnAttack(int attack)
+		{
+			this.findIndexOfAttack();
+			int currStart = 0;
+			int currEnd = this.theMinions.size()-1;
+			int middle;
+			HearthstoneCard temp;
+			
+			
+			while(currStart <= currEnd)
+			{
+				middle = (currStart + currEnd)/2; 
+				temp = this.theMinions.get(middle);
+				if(temp.getAttack() == attack)
+				{
+					return this.theMinions.get(middle);
+				}
+				else if(attack < temp.getAttack())
+				{
+					currEnd = middle - 1;
+				}
+				else
+				{
+					currStart = middle + 1;
+				}
+			}
+			return null;
+		}
+		
 		   
-		    int binarySearch(int arr[], int cost, int attack, int defense) 
-		    { 
-		        if (attack >= cost) { 
-		            int mid = cost + (attack - cost) / 2; 
-		  
-		            
-		            if (arr[mid] == defense) 
-		                return mid; 
-		  
-		      
-		            if (arr[mid] > defense) 
-		                return binarySearch(arr, cost, mid - 1, defense); 
-		  
-		         
-		            return binarySearch(arr, mid + 1, attack, defense); 
-		        } 
-		  
-		        
-		        return -1; 
-		    } 
-		  
-		   
-		    public void main(String args[]) 
-		    { 
-		        BinarySearch ob = new BinarySearch(); 
-		        int arr[] = { 2, 3, 4, 10, 40 }; 
-		        int n = arr.length; 
-		        int defense = 10; 
-		        int result = ob.binarySearch(arr, 0, n - 1, defense); 
-		        if (result == -1) 
-		            System.out.println("Element not present"); 
-		        else
-		            System.out.println("Element found at index " + result); 
-		    } 
-		} 
+		    
 
 	private HearthstoneCard findSmallest()
 	{
